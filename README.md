@@ -1,2 +1,8 @@
-# balanced-binary-tree
-The program checks whether a binary tree is height-balanced by calculating the height of each subtree. It compares the heights of the left and right subtrees at every node. If their difference is greater than one, the tree is unbalanced. The solution uses recursion and efficiently checks all nodes.
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def h(node):
+            if not node: return 0
+            l, r = h(node.left), h(node.right)
+            if l == -1 or r == -1 or abs(l-r) > 1: return -1
+            return max(l, r) + 1
+        return h(root) != -1
